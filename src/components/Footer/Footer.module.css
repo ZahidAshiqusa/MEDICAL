@@ -1,0 +1,136 @@
+.footer {
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  padding: 2.5rem 0 1.5rem;
+  margin-top: 3rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  flex: 1;
+  min-width: 200px;
+}
+
+.brandName {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+}
+
+.tagline {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.contact {
+  text-align: right;
+}
+
+.contactTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.devName {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 0.6rem;
+}
+
+.contactLinks {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: var(--color-primary);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 1.5rem 0;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.credits {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.codeIcon {
+  color: var(--color-primary);
+}
+
+.heart {
+  color: var(--color-danger);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact {
+    text-align: center;
+  }
+
+  .contactLinks {
+    justify-content: center;
+  }
+
+  .bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
