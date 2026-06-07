@@ -45,6 +45,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           return res.status(400).json({ error: 'Staff ID, name, and role are required' });
         }
 
+        // Enforce daily limit: only 1 attendance per staff per day
+        const existingRecords = await readJsonFile<AttendanceRecord[]>('data/attendance.json');
+        const today = new Date().toDateString();
+        const alreadyMarked = existingRecords.some(
+          r => r.staffId === staffId && new Date(r.checkIn).toDateString() === today
+        );
+        if (alreadyMarked) {
+          return res.status(409).json({ error: 'Attendance already marked for today' });
+        }
+
         const newRecord: AttendanceRecord = {
           id: generateRecordId(),
           staffId,

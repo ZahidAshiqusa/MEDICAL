@@ -7,6 +7,7 @@ import Admin from './pages/Admin/Admin';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Appointments from './pages/Appointments/Appointments';
 import Attendance from './pages/Attendance/Attendance';
+import QRAttendance from './pages/QRAttendance/QRAttendance';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/attendance" element={<Attendance />} />
+          <Route path="/qr-attendance" element={<QRAttendance />} />
         </Routes>
       </main>
       <Footer />

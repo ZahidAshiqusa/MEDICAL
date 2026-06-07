@@ -39,7 +39,13 @@ function Attendance() {
       setScanNotification(`Attendance marked for ${member.name}`);
       setTimeout(() => setScanNotification(''), 3000);
       fetchData();
-    } catch { alert('Failed to mark attendance'); }
+    } catch (err: unknown) {
+      const msg = err instanceof Error && err.message.includes('409')
+        ? `Attendance already marked for ${member.name} today`
+        : 'Failed to mark attendance';
+      setScanNotification(msg);
+      setTimeout(() => setScanNotification(''), 3000);
+    }
   };
 
   const handleQrScan = (data: string) => {

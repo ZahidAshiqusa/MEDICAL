@@ -1,0 +1,237 @@
+.page {
+  padding: 2rem 0;
+  min-height: calc(100vh - 70px);
+  background: var(--color-bg);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.headerLeft { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.headerRight { display: flex; align-items: center; }
+
+.counterBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Result Banner */
+.resultBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.resultBanner.success {
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  color: #065f46;
+}
+
+.resultBanner.error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+.resultBanner.duplicate {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+}
+
+.resultIcon { font-size: 1.25rem; flex-shrink: 0; }
+.resultMessage { font-weight: 600; margin: 0; font-size: 0.95rem; }
+.resultDetail { font-size: 0.85rem; margin: 0.25rem 0 0; opacity: 0.8; }
+
+.resultClose {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.5;
+  font-size: 0.9rem;
+  padding: 0.25rem;
+}
+.resultClose:hover { opacity: 1; }
+
+/* Scanner */
+.scannerSection {
+  margin-bottom: 2rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--color-border-light);
+  background: #000;
+  min-height: 350px;
+}
+
+.scannerWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 350px;
+}
+
+.scannerWrapper > div {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.scannerPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: #111;
+}
+
+.bigQrIcon { font-size: 4rem; opacity: 0.3; }
+.scannerPlaceholder p { margin: 0; font-size: 0.95rem; }
+
+.startBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.startBtn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* Records Section */
+.recordsSection {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border-light);
+  padding: 1.5rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.recordList { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.recordItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  transition: background 0.2s;
+}
+.recordItem:hover { background: var(--color-primary-light); }
+
+.recordLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.recordAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.recordName {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.recordRole {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.recordTime {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.noRecords {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .title { font-size: 1.35rem; }
+  .scannerSection, .scannerPlaceholder, .scannerWrapper { min-height: 280px; }
+}

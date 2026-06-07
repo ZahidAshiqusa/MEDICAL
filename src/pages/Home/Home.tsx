@@ -1,8 +1,29 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserMd, FaHospital, FaWheelchair, FaClock, FaCalendarCheck, FaArrowRight, FaStethoscope, FaHandHoldingMedical } from 'react-icons/fa';
+import { FaUserMd, FaHospital, FaWheelchair, FaClock, FaCalendarCheck, FaArrowRight, FaStethoscope, FaHandHoldingMedical, FaCommentDots, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
+import { apiPost } from '../../hooks/useApi';
 import styles from './Home.module.css';
 
 function Home() {
+  const [complaintName, setComplaintName] = useState('');
+  const [complaintIssue, setComplaintIssue] = useState('');
+  const [complaintStatus, setComplaintStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  const handleComplaint = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!complaintName.trim() || !complaintIssue.trim()) return;
+    setComplaintStatus('sending');
+    try {
+      await apiPost('/api/complaints', { patientName: complaintName.trim(), issue: complaintIssue.trim() });
+      setComplaintStatus('sent');
+      setComplaintName('');
+      setComplaintIssue('');
+      setTimeout(() => setComplaintStatus('idle'), 4000);
+    } catch {
+      setComplaintStatus('error');
+      setTimeout(() => setComplaintStatus('idle'), 3000);
+    }
+  };
   const features = [
     {
       icon: <FaUserMd />,
@@ -93,6 +114,50 @@ function Home() {
                 <p className={styles.featureDesc}>{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Complaint Section */}
+      <section className={styles.complaint} id="complaint">
+        <div className={styles.container}>
+          <div className={styles.complaintCard}>
+            <div className={styles.complaintHeader}>
+              <FaCommentDots className={styles.complaintIcon} />
+              <div>
+                <h2 className={styles.complaintTitle}>Submit a Complaint</h2>
+                <p className={styles.complaintDesc}>Your feedback helps us improve our services. We take every complaint seriously.</p>
+              </div>
+            </div>
+            {complaintStatus === 'sent' ? (
+              <div className={styles.complaintSuccess}>
+                <FaCheckCircle />
+                <p>Thank you! Your complaint has been submitted. We will look into it.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleComplaint} className={styles.complaintForm}>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={complaintName}
+                  onChange={e => setComplaintName(e.target.value)}
+                  className={styles.complaintInput}
+                  required
+                />
+                <textarea
+                  placeholder="Describe your complaint..."
+                  value={complaintIssue}
+                  onChange={e => setComplaintIssue(e.target.value)}
+                  rows={4}
+                  className={styles.complaintTextarea}
+                  required
+                />
+                <button type="submit" className={styles.complaintBtn} disabled={complaintStatus === 'sending'}>
+                  {complaintStatus === 'sending' ? 'Submitting...' : <><FaPaperPlane /> Submit Complaint</>}
+                </button>
+                {complaintStatus === 'error' && <p className={styles.complaintError}>Failed to submit. Please try again.</p>}
+              </form>
+            )}
           </div>
         </div>
       </section>

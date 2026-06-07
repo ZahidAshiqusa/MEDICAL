@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FaHospital, FaBars, FaTimes, FaHome, FaCalendarAlt, FaUserShield, FaChartBar, FaClipboardCheck } from 'react-icons/fa';
+import { FaHospital, FaBars, FaTimes, FaHome, FaCalendarAlt, FaUserShield, FaChartBar, FaClipboardCheck, FaCommentDots, FaQrcode } from 'react-icons/fa';
 import styles from './Header.module.css';
 
 function Header() {
@@ -12,6 +12,8 @@ function Header() {
     { to: '/admin', label: 'Admin', icon: <FaUserShield /> },
     { to: '/dashboard', label: 'Dashboard', icon: <FaChartBar /> },
     { to: '/attendance', label: 'Attendance', icon: <FaClipboardCheck /> },
+    { to: '/qr-attendance', label: 'QR Attendance', icon: <FaQrcode /> },
+    { to: '/#complaint', label: 'Complaints', icon: <FaCommentDots />, transparent: true },
   ];
 
   return (
@@ -35,7 +37,7 @@ function Header() {
             <NavLink
               key={link.to}
               to={link.to}
-              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''} ${'transparent' in link && link.transparent ? styles.navTransparent : ''}`}
               onClick={() => setMenuOpen(false)}
             >
               <span className={styles.navIcon}>{link.icon}</span>

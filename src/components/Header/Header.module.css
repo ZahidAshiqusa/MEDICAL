@@ -85,6 +85,16 @@
   font-size: 0.85rem;
 }
 
+.navTransparent {
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
+}
+
+.navTransparent:hover,
+.navTransparent.active {
+  opacity: 1;
+}
+
 @media (max-width: 900px) {
   .hamburger {
     display: flex;
